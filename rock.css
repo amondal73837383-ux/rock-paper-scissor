@@ -1,73 +1,130 @@
-*{
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-h1{
-    background-color: #081b31;
-    color:bisque;
-    height: 5rem;
-   line-height: 5rem;
-}
-.choices{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  gap:3rem;
-  margin-top: 3rem;
-}
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; /* Prevents padding from breaking your layout sizes */
+    text-align: center; 
+} 
 
-.choice{
-    height:165px;
-    width:165px;
-    border-radius:50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.choice:hover{
-    background-color: #081b31;
+h1 { 
+    background-color: #081b31; 
+    color: bisque; 
+    min-height: 5rem; /* Allows height to expand if text wraps */
+    line-height: 5rem; 
+    font-size: 2.5rem; /* Scales font down slightly on smaller displays */
+    padding: 0 1rem;
+} 
+
+/* Flex container for game choices */
+.choices { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; /* Allows choices to wrap to the next line on small screens */
+    gap: 2rem; /* Reduced gap slightly for better mobile fit */
+    margin-top: 3rem; 
+    padding: 0 1rem;
+} 
+
+/* Circular choice container */
+.choice { 
+    height: 22vw; /* Scales size dynamically based on viewport width */
+    width: 22vw; 
+    max-height: 165px; /* Keeps the original size on desktop screens */
+    max-width: 165px; 
+    min-height: 100px; /* Prevents circles from getting too tiny on small phones */
+    min-width: 100px;
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: background-color 0.2s, transform 0.1s ease; /* Smoother hover effect */
+} 
+
+.choice:hover { 
+    background-color: #081b31; 
+    cursor: pointer; 
+} 
+
+/* Images inside the choices */
+img { 
+    height: 90%; /* Scales relative to its parent container (.choice) */
+    width: 90%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+} 
+
+/* Score board layout */
+.score-bord { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10vw; /* Scales gap dynamically based on screen size */
+    margin-top: 3rem; 
+    font-size: 5vw; /* Fluid font sizing */
+    max-font-size: 2rem; /* Clamps max size for large displays */
+} 
+
+#user-score, #comp-score { 
+    font-size: 8vw; 
+} 
+
+.msg-container { 
+    margin-top: 5rem; 
+    padding: 0 1rem;
+} 
+
+#msg { 
+    background-color: #081b31; 
+    color: white; 
+    font-size: 1.5rem; 
+    display: inline-block; /* Fixed display bug where padding behaves poorly on 'inline' */
+    padding: 1rem 2rem; 
+    border-radius: 1rem; 
+    max-width: 90%; /* Keeps text box within screen boundaries */
+} 
+
+.choice:active { 
+    transform: scale(0.92); 
+} 
+
+.reset { 
+    margin-top: 4rem; 
+} 
+
+#reset-btn { 
+    background-color: #081; 
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
-img{
-    height:150px;
-    width:150px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-.score-bord{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:5rem;
-    margin-top: 3rem;
-    font-size: 2rem;
-    
-}
-#user-score,
-#comp-score{
-    font-size: 4rem;
-}
-.msg-container{
-    margin-top:5rem ;
-}
-#msg{
-    
-    background-color: #081b31;
-    color:white;
-    font-size: 2rem;
-    display: inline;
-    padding:1rem;
-    border-radius: 1rem;
-}
-.choice:active {
-    transform: scale(0.92);
-    transition: transform 0.1s ease;
-}
-.reset{
-    margin-top: 4rem;
-    
-}
-#reset-btn{
-    background-color:#081;
+
+/* ==========================================================================
+   Media Query: Custom rules for mobile phones and small screens (under 600px)
+   ========================================================================== */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem; /* Smaller header title */
+        line-height: normal;
+        padding: 1.5rem 1rem;
+    }
+
+    .choices {
+        gap: 1.5rem; /* Packs items closer together on mobile */
+    }
+
+    .score-bord {
+        font-size: 1.5rem; /* Sets concrete boundaries for standard mobile displays */
+        gap: 2.5rem;
+    }
+
+    #user-score, #comp-score { 
+        font-size: 3rem; 
+    }
+
+    #msg {
+        font-size: 1.2rem; /* Keeps action messages readable without zooming */
+    }
 }
